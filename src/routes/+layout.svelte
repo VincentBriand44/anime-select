@@ -2,4 +2,6 @@
 import '../app.pcss';
 </script>
 
-<slot />
+<div class="bg-primary h-screen w-screen p-8 flex justify-center">
+  <slot />
+</div>
