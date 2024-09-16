@@ -47,5 +47,8 @@
       "skipQuestions": ["scope", "body", "issues", "breaking"]
     }
   },
-  "trustedDependencies": ["@biomejs/biome"]
+  "trustedDependencies": ["@biomejs/biome"],
+  "dependencies": {
+    "svelte-hero-icons": "^5.2.0"
+  }
 }

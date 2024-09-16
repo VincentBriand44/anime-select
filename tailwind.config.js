@@ -15,6 +15,12 @@ export default {
         third: '#FFEAC5',
         fourth: '#FFDBB5',
       },
+      borderColor: {
+        primary: '#FFEAC5',
+        secondary: '#FFDBB5',
+        third: '#6C4E31',
+        fourth: '#603F26',
+      },
     },
   },
   plugins: [],

@@ -45,7 +45,7 @@ const previousEpisode = () => {
 };
 </script>
 
-<div class="bg-secondary rounded-3xl h-full w-full p-4 flex justify-between flex-col max-w-6xl shadow-2xl text-secondary">
+<div class="bg-secondary rounded-3xl h-full w-full p-4 flex justify-between flex-col shadow-2xl text-secondary">
   {#if error}
     <p>{error}</p>
   {:else if season.length > 0 && episode}
@@ -57,7 +57,7 @@ const previousEpisode = () => {
       {/if}
     </div>
     
-    <div class="container h-full py-4 flex flex-col gap-1 text-sm">
+    <div class="w-full box h-full py-4 flex flex-col gap-1 text-sm">
       <h2 class="text-xl font-bold text-primary">{episode.title}</h2>
       
       <div>
@@ -151,19 +151,19 @@ const previousEpisode = () => {
 </div>
 
 <style lang="postcss">
-  .container h3 {
+  .box h3 {
     @apply text-primary font-bold min-w-fit
   }
   
-  .container p {
+  .box p {
     @apply text-xs text-secondary
   }
   
-  .container span {
+  .box span {
     @apply bg-fourth rounded-md px-2 text-xs font-bold text-fourth
   }
 
-  .container > div:not(#synopsis) {
+  .box > div:not(#synopsis) {
     @apply flex gap-2
   }
 </style>
