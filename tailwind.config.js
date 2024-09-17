@@ -1,6 +1,6 @@
 const { primary, secondary, third, fourth } = {
   primary: '#F0E9D2',
-  secondary: '#E6DDC4',
+  secondary: '#E6DDC1',
   third: '#678983',
   fourth: '#181D31',
 };
