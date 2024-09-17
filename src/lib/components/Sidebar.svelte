@@ -32,9 +32,9 @@ let open = false;
 {#if open}
   <nav class="fixed w-64 h-screen xl:relative left-0 top-0 self-start overflow-hidden p-4">
     <div class="bg-primary h-10 w-10 rounded-full"></div>
-    <ul class="fixed p-6 pt-16 top-0 left-0 w-64 h-screen opacity-0 xl:opacity-100">
+    <ul class="fixed p-6 pt-20 top-0 left-0 w-64 h-screen opacity-0 xl:opacity-100 flex flex-col gap-2">
       {#each nav as { name, href }}
-      <li class="text-primary font-bold"><a {href}>{name}</a></li>
+      <li class="text-primary font-bold hover:text-secondary"><a {href}>{name}</a></li>
       {/each}
     </ul>
   </nav>
