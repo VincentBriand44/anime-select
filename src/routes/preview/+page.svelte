@@ -25,8 +25,6 @@ const getEpisode = () => {
     return null;
   }
 
-  console.log(season[index]);
-
   return season[index];
 };
 
