@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Bars3, Icon, XMark } from 'svelte-hero-icons';
+import SidebarIcon from './SidebarIcon.svelte';
 
 interface Nav {
   name: string;
@@ -22,15 +22,15 @@ let open = false;
 
 <div class="absolute left-8 top-8 h-10 w-10 flex justify-end items-end xl:bg-transparent bg-secondary rounded-br-full z-20" class:bg-secondary={!open}>
   <button
-    class="absolute -left-4 -top-4 rounded-full bg-primary saturate-150 h-10 w-10 shadow-xl hover:shadow-md p-2"
+    class="absolute -left-4 -top-4 rounded-full bg-primary saturate-150 h-10 w-10 shadow-xl hover:shadow-md p-3"
     on:click={()=>{open = !open}}
   >
-    <Icon src="{open ? XMark : Bars3}" class="text-primary" />
+    <SidebarIcon {open} />
   </button>
 </div>
 
 {#if open}
-  <nav class="fixed w-64 h-screen xl:relative left-0 top-0 self-start overflow-hidden p-4 z-10">
+  <nav class="fixed w-64 h-screen xl:h-auto xl:relative left-0 top-0 self-start overflow-hidden p-4 z-10">
     <div class="bg-primary h-10 w-10 rounded-full"></div>
     <ul class="fixed p-6 pt-20 top-0 left-0 w-64 h-screen opacity-0 xl:opacity-100 flex flex-col gap-2">
       {#each nav as { name, href }}
@@ -50,6 +50,12 @@ let open = false;
     }
   }
 
+  @media screen and (min-width: 1280px) {
+    nav {
+      animation: toLeft .5s forwards;
+    }
+  }
+
  @keyframes scale {
   2% { 
     @apply scale-[5]
@@ -62,11 +68,23 @@ let open = false;
   25% {
     @apply opacity-0
   }
-  75% {
+  50% {
     @apply bg-transparent shadow-none
   }
   100% {
     @apply opacity-100 bg-primary shadow-2xl
+  }
+ }
+ 
+ @keyframes toLeft {
+  0% {
+    @apply w-0 opacity-0
+  }
+  75% {
+    @apply w-64 opacity-0
+  }
+  100% {
+    @apply opacity-100
   }
  }
 </style>
