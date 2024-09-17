@@ -1,25 +1,32 @@
+const { primary, secondary, third, fourth } = {
+  primary: '#F0E9D2',
+  secondary: '#E6DDC4',
+  third: '#678983',
+  fourth: '#181D31',
+};
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
       backgroundColor: {
-        primary: '#FFEAC5',
-        secondary: '#FFDBB5',
-        third: '#6C4E31',
-        fourth: '#603F26',
+        primary,
+        secondary,
+        third,
+        fourth,
       },
       textColor: {
-        primary: '#6C4E31',
-        secondary: '#603F26',
-        third: '#FFEAC5',
-        fourth: '#FFDBB5',
+        primary: third,
+        secondary: fourth,
+        third: primary,
+        fourth: secondary,
       },
       borderColor: {
-        primary: '#FFEAC5',
-        secondary: '#FFDBB5',
-        third: '#6C4E31',
-        fourth: '#603F26',
+        primary,
+        secondary,
+        third,
+        fourth,
       },
     },
   },
