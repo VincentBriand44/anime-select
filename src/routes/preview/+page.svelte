@@ -160,7 +160,7 @@ const previousEpisode = () => {
   }
   
   .box span {
-    @apply bg-fourth rounded-md px-2 text-xs font-bold text-fourth
+    @apply bg-fourth rounded-md px-2 text-xs font-bold text-fourth leading-5
   }
 
   .box > div:not(#synopsis) {
