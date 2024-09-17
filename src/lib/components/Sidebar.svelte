@@ -20,7 +20,7 @@ const nav: Nav[] = [
 let open = false;
 </script>
 
-<div class="absolute left-8 top-8 h-10 w-10 flex justify-end items-end xl:bg-transparent bg-secondary rounded-br-full z-10" class:bg-secondary={!open}>
+<div class="absolute left-8 top-8 h-10 w-10 flex justify-end items-end xl:bg-transparent bg-secondary rounded-br-full z-20" class:bg-secondary={!open}>
   <button
     class="absolute -left-4 -top-4 rounded-full bg-primary saturate-150 h-10 w-10 shadow-xl hover:shadow-md p-2"
     on:click={()=>{open = !open}}
@@ -30,7 +30,7 @@ let open = false;
 </div>
 
 {#if open}
-  <nav class="fixed w-64 h-screen xl:relative left-0 top-0 self-start overflow-hidden p-4">
+  <nav class="fixed w-64 h-screen xl:relative left-0 top-0 self-start overflow-hidden p-4 z-10">
     <div class="bg-primary h-10 w-10 rounded-full"></div>
     <ul class="fixed p-6 pt-20 top-0 left-0 w-64 h-screen opacity-0 xl:opacity-100 flex flex-col gap-2">
       {#each nav as { name, href }}
