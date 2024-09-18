@@ -47,7 +47,7 @@ const previousEpisode = () => {
 {#if error}
   <p>{error}</p>
 {:else if season.length > 0 && episode}
-  <div class="rounded-2xl w-full h-full shadow-xl overflow-hidden">
+  <div class="rounded-2xl w-full h-full min-h-1/2 shadow-xl overflow-hidden">
     {#if episode.trailer}
       <iframe class="w-full h-full" src={episode.trailer.embedUrl.toString()} title={episode.title.toString()} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     {:else}
@@ -55,13 +55,13 @@ const previousEpisode = () => {
     {/if}
   </div>
   
-  <div class="w-full box h-full py-4 flex flex-col gap-1 text-sm">
+  <div class="w-full box h-full py-4 flex flex-col gap-1 text-sm overflow-y-scroll">
     <h2 class="text-xl font-bold text-primary">{episode.title}</h2>
     
     <div>
       <h3>Autres titres:</h3>
       {#if episode.titles.length > 0}
-        <p>{episode.titles.map((title) => title.title).join(', ')}</p>
+        <p>{episode.titles.map(({title}) => title).join(', ')}</p>
       {:else}
         <p>Aucun genre n'est disponible pour cet animé</p>
       {/if}
