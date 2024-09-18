@@ -1,4 +1,6 @@
 <script lang="ts">
+import PreviewEach from '$lib/components/PreviewEach.svelte';
+import PreviewIf from '$lib/components/PreviewIf.svelte';
 import Jikan from 'jikan4.js';
 import { onMount } from 'svelte';
 
@@ -25,20 +27,15 @@ const getEpisode = () => {
     return null;
   }
 
+  console.log(season[index]);
+
   return season[index];
 };
 
-const nextEpisode = () => {
-  if (index < season.length - 1) {
-    index += 1;
-    episode = getEpisode();
-  }
-};
-
-const previousEpisode = () => {
-  if (index > 0) {
-    index -= 1;
-    episode = getEpisode();
+const changeEpisode = (newIndex: number) => {
+  if (newIndex >= 0 && newIndex < season.length) {
+    index = newIndex;
+    episode = season[index];
   }
 };
 </script>
@@ -58,110 +55,25 @@ const previousEpisode = () => {
   <div class="w-full box h-full py-4 flex flex-col gap-1 text-sm overflow-y-scroll">
     <h2 class="text-xl font-bold text-primary">{episode.title}</h2>
     
-    <div>
-      <h3>Autres titres:</h3>
-      {#if episode.titles.length > 0}
-        <p>{episode.titles.map(({title}) => title).join(', ')}</p>
-      {:else}
-        <p>Aucun genre n'est disponible pour cet animé</p>
-      {/if}
-    </div>
-    
-    <div>
-      <h3>Catégories:</h3>
-      {#each episode.demographics as demographic}
-        <span>{demographic.name}</span>
-      {:else}
-        <p>Aucun genre n'est disponible pour cet animé</p>
-      {/each}
-    </div>
-
-    <div>
-      <h3>Genre:</h3>
-
-      {#each episode.genres as genre}
-        <span>{genre.name}</span>
-      {:else}
-        <p>Aucun genre n'est disponible pour cet animé</p>
-      {/each}
-    </div>
-    
-    <div>
-      <h3>Themes:</h3>
-
-      {#each episode.themes as theme}
-        <span>{theme.name}</span>
-      {:else}
-        <p>Aucun theme n'est disponible pour cet animé</p>
-      {/each}
-    </div>
-    
-    <div>
-      <h3>Studios:</h3>
-
-      {#each episode.studios as studio}
-        <span>{studio.name}</span>
-      {:else}
-        <p>Aucun theme n'est disponible pour cet animé</p>
-      {/each}
-    </div>
-    
-    <div>
-      <h3>Nombre d'épisodes:</h3>
-      {#if episode.episodes}
-        <p>{episode.episodes}</p>
-      {:else}
-        <p>Le nombre d'épisodes n'est pas disponible pour cet animé</p>
-      {/if}
-    </div>
-    
-    <div>
-      <h3>Source:</h3>
-      {#if episode.source}
-        <p>{episode.source}</p>
-      {:else}
-        <p>Aucun synopsis n'est disponible pour cet animé</p>
-      {/if}
-    </div>
-    
-    <div id="synopsis">
-      <h3>Synopsis:</h3>
-      {#if episode.synopsis}
-        <p class="px-2">{episode.synopsis}</p>
-      {:else}
-        <p>Aucun synopsis n'est disponible pour cet animé</p>
-      {/if}
-    </div>
+    <PreviewIf data={episode.titles.map(({title}) => title).join(',  ')} title="Autres titres" error="Aucun autre titre n'est disponible pour cet animé" />   
+    <PreviewEach data={episode.demographics} title="Catégories" error="Aucune catégorie n'est disponible pour cet animé" />
+    <PreviewEach data={episode.genres} title="Genres" error="Aucun genre n'est disponible pour cet animé" />
+    <PreviewEach data={episode.themes} title="Thèmes" error="Aucun thème n'est disponible pour cet animé" />
+    <PreviewEach data={episode.studios} title="Studios" error="Aucun studio n'est disponible pour cet animé" />
+    <PreviewIf data={episode.episodes} title="Nombre d'épisodes" error="Le nombre d'épisodes n'est pas disponible pour cet animé" />
+    <PreviewIf data={episode.source} title="Source" error="Aucune source n'est disponible pour cet animé" />
+    <PreviewIf data={episode.synopsis} title="Synopsis" error="Aucun synopsis n'est disponible pour cet animé" synopsis />
   </div>
   
   <div class="w-full flex justify-center gap-2 items-center">
-    <button class="bg-third text-third font-bold py-2 px-4 rounded-2xl shadow-lg" class:opacity-20={index === 0} on:click={previousEpisode} disabled={index === 0}>
+    <button class="bg-third text-third font-bold py-2 px-4 rounded-2xl shadow-lg" class:opacity-20={index === 0} on:click={() => changeEpisode(index - 1)} disabled={index === 0}>
       Épisode Précédent
     </button>
     <span class="text-primary font-bold">{index + 1} / {season.length}</span>
-    <button class="bg-third text-third font-bold py-2 px-4 rounded-2xl shadow-lg" class:opacity-20={index === season.length - 1} on:click={nextEpisode} disabled={index === season.length - 1}>
+    <button class="bg-third text-third font-bold py-2 px-4 rounded-2xl shadow-lg" class:opacity-20={index === season.length - 1} on:click={() => changeEpisode(index + 1)} disabled={index === season.length - 1}>
       Épisode Suivant
     </button>
   </div>
 {:else}
   <p>Chargement des données...</p>
 {/if}
-
-
-<style lang="postcss">
-  .box h3 {
-    @apply text-primary font-bold min-w-fit
-  }
-  
-  .box p {
-    @apply text-xs text-secondary
-  }
-  
-  .box span {
-    @apply bg-fourth rounded-md px-2 text-xs font-bold text-fourth leading-5
-  }
-
-  .box > div:not(#synopsis) {
-    @apply flex gap-2
-  }
-</style>
