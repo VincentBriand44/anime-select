@@ -11,7 +11,7 @@ const handleClick = () => {
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
 <div 
   class="flex flex-col items-center justify-center w-full h-full gap-[20%] relative transition" 
-  class:open 
+  class:open
   class:initialized
   id="icon"
   on:click={handleClick}>
