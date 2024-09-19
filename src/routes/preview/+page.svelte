@@ -64,8 +64,36 @@ const changeEpisode = (newIndex: number) => {
   <button class="bg-third text-third font-bold py-2 px-4 rounded-2xl shadow-lg" class:opacity-20={index === 0} on:click={() => changeEpisode(index - 1)} disabled={index === 0}>
     Épisode Précédent
   </button>
-  <span class="text-primary font-bold">{index + 1} / {season.length}</span>
+  <span class="text-primary font-bold">
+    <input
+    class="w-5 bg-transparent"
+    type="number"
+    on:change={(e)=>changeEpisode(parseInt(e.currentTarget.value)-1)}
+    value={index + 1} />
+     / {season.length}
+  </span>
   <button class="bg-third text-third font-bold py-2 px-4 rounded-2xl shadow-lg" class:opacity-20={index === season.length - 1} on:click={() => changeEpisode(index + 1)} disabled={index === season.length - 1}>
     Épisode Suivant
   </button>
 </div>
+
+<style>
+  /* Firefox */
+input[type=number] {
+    appearance: textfield;
+}
+ 
+/* Chrome */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
+	margin:0;
+}
+ 
+/* Opéra*/
+input::-o-inner-spin-button,
+input::-o-outer-spin-button { 
+	-o-appearance: none;
+	margin:0
+}
+</style>
