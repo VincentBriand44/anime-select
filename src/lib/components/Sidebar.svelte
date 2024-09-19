@@ -50,14 +50,16 @@ const handleClick = () => {
 
 <style lang="postcss">
   nav.initialized.open > div {
-    animation: scale-in 1s ease-in;
+    transform: scale(50);
+    transition: transform 1s ease-in;
   }
   nav.initialized.open > ul {
     animation: display-in 1s forwards;
   }
 
   nav.initialized:not(open) > div {
-    animation: scale-out 1s ease-out;
+    transform: scale(1);
+    transition: transform 1s ease-out;
   }
   nav.initialized:not(open) > ul {
     animation: display-out .5s forwards;
@@ -70,14 +72,6 @@ const handleClick = () => {
     animation: toLeft-out .5s forwards;
   }
   @media screen and (max-width: 1279px) {
-    @keyframes scale-in {
-      0% { 
-        @apply scale-0
-      }
-      100% { 
-        @apply scale-[50]
-      }
-    }
     @keyframes display-in {
       25% {
         @apply opacity-0
@@ -87,14 +81,6 @@ const handleClick = () => {
       }
       100% {
         @apply opacity-100 bg-primary shadow-2xl
-      }
-    }
-      @keyframes scale-out {
-      0% { 
-        @apply scale-[50]
-      }
-      100% { 
-        @apply scale-0
       }
     }
     
