@@ -32,7 +32,7 @@ const changeEpisode = (newIndex: number) => {
     <div 
     class="min-w-full max-w-full h-full max-h-full relative transition-all flex flex-col gap-2"
     style:transform="translateX({`${index * -100}`}%)">
-      <div class="rounded-2xl w-full h-1/2 overflow-hidden">
+      <div class="rounded-2xl w-full h-1/2 overflow-hidden bg-fourth flex justify-center items-center">
         {#if episode.trailer}
           <iframe class="w-full h-full" src={episode.trailer.embedUrl.toString()} title={episode.title.toString()} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         {:else}
