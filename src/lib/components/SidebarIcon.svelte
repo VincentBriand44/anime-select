@@ -3,22 +3,12 @@ export let open = false;
 
 $: className = `flex flex-col items-center justify-center w-full h-full gap-[20%] relative transition ${open ? 'open' : ''} ${open !== undefined ? 'initialized' : ''}`;
 
-const handleClick = () => {
-  open = !open;
-};
-
 const bars = Array(3).fill(null);
 </script>
 
 <div 
   class={className}
   id="icon"
-  on:click={handleClick}
-  on:keydown={(e) => e.key === 'Enter' && handleClick()}
-  role="button"
-  tabindex="0"
-  aria-label="Toggle menu"
-  aria-expanded={open}
 >
   {#each bars as _item}
     <div class="bg-third w-full h-[20%] rounded"></div>

@@ -16,15 +16,14 @@ let initialized = false;
 let delayedClose = false;
 
 function handleClick() {
-  open = !open;
-  initialized = true;
+  if (!delayedClose) {
+    delayedClose = true;
+    open = !open;
+    initialized = true;
 
-  if (!open) {
     setTimeout(() => {
-      delayedClose = true;
+      delayedClose = false;
     }, 1000);
-  } else {
-    delayedClose = false;
   }
 }
 </script>
@@ -34,6 +33,8 @@ function handleClick() {
   class="absolute left-4 top-4 rounded-full bg-primary saturate-150 h-10 w-10 shadow-xl hover:shadow-md p-3 z-30"
   on:click={handleClick}
   aria-label="Toggle navigation"
+  tabindex="0"
+  aria-expanded={open}
 >
   <SidebarIcon {open} />
 </button>
@@ -42,12 +43,12 @@ function handleClick() {
   class="fixed w-64 h-screen xl:h-auto xl:relative left-0 top-0 self-start overflow-hidden p-4 z-20 xl:opacity-0 transition-all duration-500"
   class:open
   class:initialized
-  class:!w-0={delayedClose}
+  class:!w-0={!delayedClose && !open}
 >
   <div class="bg-primary h-10 w-10 rounded-full transition-transform duration-1000 ease-in-out" class:scale-50={open} />
   <ul 
     class="fixed p-6 pt-20 top-0 left-0 w-64 h-screen opacity-0 xl:opacity-100 flex flex-col gap-2 transition-all duration-500"
-    class:!w-0={delayedClose}
+    class:!w-0={!delayedClose && !open}
   >
     {#each nav as { name, href }}
       <li>
