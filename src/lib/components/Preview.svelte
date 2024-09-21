@@ -21,7 +21,15 @@ const changeEpisode = (newIndex: number) => {
     style:transform="translateX({`${index * -100}`}%)">
       <div class="rounded-2xl w-full h-1/2 overflow-hidden bg-fourth flex justify-center items-center">
         {#if episode.trailer?.id}
-          <iframe class="w-full h-full" src={episode.trailer.embedUrl.toString()} title={episode.title.toString()} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe
+            class="w-full h-full"
+            src={episode.trailer.embedUrl.toString()}
+            title={episode.title.toString()}
+            loading="lazy"
+            frameborder="0"
+            allow="accelerometer;autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen></iframe>
         {:else}
           <p class="text-fourth font-bold">Aucun trailer n'est disponible</p>
         {/if}
