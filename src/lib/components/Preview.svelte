@@ -2,6 +2,7 @@
 import PreviewEach from '$lib/components/PreviewEach.svelte';
 import PreviewIf from '$lib/components/PreviewIf.svelte';
 import Jikan from 'jikan4.js';
+import { Svroller } from 'svrollbar';
 
 export let season: Jikan.Anime[] = [];
 let index = 2;
@@ -34,16 +35,19 @@ const changeEpisode = (newIndex: number) => {
           <p class="text-fourth font-bold">Aucun trailer n'est disponible</p>
         {/if}
       </div>
-      <div class="w-full h-1/2 box py-4 flex flex-col gap-1 text-sm overflow-y-scroll">
-        <h2 class="text-xl font-bold text-primary">{episode.title}</h2>
-        <PreviewIf data={episode.titles.map(({title}) => title).join(',  ')} title="Autres titres" error="Aucun autre titre n'est disponible pour cet animé" />
-        <PreviewEach data={episode.demographics} title="Catégories" error="Aucune catégorie n'est disponible pour cet animé" />
-        <PreviewEach data={episode.genres} title="Genres" error="Aucun genre n'est disponible pour cet animé" />
-        <PreviewEach data={episode.themes} title="Thèmes" error="Aucun thème n'est disponible pour cet animé" />
-        <PreviewEach data={episode.studios} title="Studios" error="Aucun studio n'est disponible pour cet animé" />
-        <PreviewIf data={episode.episodes} title="Nombre d'épisodes" error="Le nombre d'épisodes n'est pas disponible pour cet animé" />
-        <PreviewIf data={episode.source} title="Source" error="Aucune source n'est disponible pour cet animé" />
-        <PreviewIf data={episode.synopsis} title="Synopsis" error="Aucun synopsis n'est disponible pour cet animé" synopsis />
+      <div class="w-full h-1/2 box py-4 flex flex-col gap-1 text-sm">
+        <Svroller width="100%" height="100%" alwaysVisible>
+          <h2 class="text-xl font-bold text-primary">{episode.title}</h2>
+          
+          <PreviewIf data={episode.titles.map(({title}) => title).join(',  ')} title="Autres titres" error="Aucun autre titre n'est disponible pour cet animé" />
+          <PreviewEach data={episode.demographics} title="Catégories" error="Aucune catégorie n'est disponible pour cet animé" />
+          <PreviewEach data={episode.genres} title="Genres" error="Aucun genre n'est disponible pour cet animé" />
+          <PreviewEach data={episode.themes} title="Thèmes" error="Aucun thème n'est disponible pour cet animé" />
+          <PreviewEach data={episode.studios} title="Studios" error="Aucun studio n'est disponible pour cet animé" />
+          <PreviewIf data={episode.episodes} title="Nombre d'épisodes" error="Le nombre d'épisodes n'est pas disponible pour cet animé" />
+          <PreviewIf data={episode.source} title="Source" error="Aucune source n'est disponible pour cet animé" />
+          <PreviewIf data={episode.synopsis} title="Synopsis" error="Aucun synopsis n'est disponible pour cet animé" synopsis />
+        </Svroller>
       </div>
     </div>
   {:else}
