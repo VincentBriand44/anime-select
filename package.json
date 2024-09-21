@@ -50,6 +50,7 @@
   "trustedDependencies": ["@biomejs/biome"],
   "dependencies": {
     "svelte-hero-icons": "^5.2.0",
-    "svelte-loading-spinners": "^0.3.6"
+    "svelte-loading-spinners": "^0.3.6",
+    "svrollbar": "^0.12.0"
   }
 }

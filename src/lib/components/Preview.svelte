@@ -4,7 +4,7 @@ import PreviewIf from '$lib/components/PreviewIf.svelte';
 import Jikan from 'jikan4.js';
 
 export let season: Jikan.Anime[] = [];
-let index = 0;
+let index = 2;
 
 const changeEpisode = (newIndex: number) => {
   if (newIndex >= 0 && newIndex < season.length) {
