@@ -8,7 +8,8 @@ interface Nav {
 
 const nav: Nav[] = [
   { name: 'Accueil', href: '/' },
-  { name: 'Animés de la saison', href: '/preview' },
+  { name: 'Saison actuelle', href: '/preview/now' },
+  { name: 'Saison prochaine', href: '/preview/upcoming' },
 ];
 
 let open = false;
