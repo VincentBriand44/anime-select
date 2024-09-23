@@ -1,0 +1,319 @@
+type AnemyChart {
+  Animes(season: String, withAdultContent: Boolean): [Anime]
+  Archive: [String]
+}
+
+type Anime {
+  MALId: Int
+  characters: [Anime_Characters]
+  country: String
+  creationDate: String
+  duration: Anime_Duration
+  endDate: Anime_EndDate
+  episodes: Int
+  favoriteCount: Int
+  format: String
+  frenchLicence: String
+  genres: [String]
+  hashtag: String
+  hentai: Boolean
+  id: Int
+  images: Anime_Images
+  links: [Anime_Links]
+  modificationDate: String
+  names: Anime_Names
+  season: Anime_Season
+  source: String
+  staffs: [Anime_Staff]
+  startDate: Anime_StartDate
+  status: String
+  studios: [Anime_Studios]
+  synonyms: [String]
+  synopsis: Anime_Synopsis
+  trailer: Anime_Trailer
+  userWatchlist: Anime_UserWatchlist
+}
+
+type Anime_Characters {
+  biography: Anime_Characters_Biography
+  id: Int
+  image: String
+  names: Anime_Characters_Names
+}
+
+type Anime_Characters_Biography {
+  english: String
+  french: String
+}
+
+type Anime_Characters_Names {
+  alternative: [String]
+  first: String
+  last: String
+  native: String
+}
+
+type Anime_Cover {
+  cover: String
+  id: Int
+  name: String
+}
+
+type Anime_Duration {
+  fullDuration: String
+  hours: Int
+  minutes: Int
+  totalMinutes: Int
+}
+
+type Anime_EndDate {
+  day: Int
+  fullDate: String
+  month: String
+  year: Int
+}
+
+type Anime_Images {
+  banner: String
+  compressed: Anime_Images_Compressed
+  cover: String
+  other: [Anime_Cover]
+}
+
+type Anime_Images_Compressed {
+  banner: String
+  cover: String
+}
+
+type Anime_Links {
+  id: Int
+  link: String
+  name: String
+}
+
+type Anime_Names {
+  english: String
+  native: String
+  romaji: String
+}
+
+type Anime_Season {
+  fullSeason: String
+  season: String
+  year: String
+}
+
+type Anime_Staff {
+  biography: Anime_Staff_Biography
+  id: Int
+  image: String
+  names: Anime_Staff_Names
+}
+
+type Anime_Staff_Biography {
+  english: String
+  french: String
+}
+
+type Anime_Staff_Names {
+  alternative: [String]
+  first: String
+  last: String
+  native: String
+}
+
+type Anime_StartDate {
+  day: Int
+  fullDate: String
+  month: String
+  year: Int
+}
+
+type Anime_Studios {
+  id: Int
+  name: String
+}
+
+type Anime_Synopsis {
+  english: String
+  french: String
+}
+
+type Anime_Trailer {
+  youtube_embed: String
+  youtube_embed_nc: String
+  youtube_id: String
+  youtube_link: String
+}
+
+type Anime_UserWatchlist {
+  episodes: Int
+  notes: String
+  score: Float
+  status: String
+}
+
+type Character {
+  anime: [Anime]
+  biography: Character_Biography
+  id: Int
+  image: String
+  names: Character_Names
+}
+
+type Character_Biography {
+  english: String
+  french: String
+}
+
+type Character_Names {
+  alternative: [String]
+  first: String
+  last: String
+  native: String
+}
+
+type Me {
+  about: String
+  avatar: String
+  badges: Me_Badges
+  banner: String
+  email: String
+  id: Int
+  settings: Me_Settings
+  username: String
+}
+
+type Me_Badges {
+  staff: Boolean
+  verify: Boolean
+}
+
+type Me_Settings {
+  account: Me_Settings_Account
+  display: Me_Settings_Display
+}
+
+type Me_Settings_Account {
+  privacy: String
+}
+
+type Me_Settings_Display {
+  adult_content: Boolean
+  anime_name: String
+  anti_spoil: Boolean
+  language: Me_Settings_Display_Language
+  theme: Me_Settings_Display_Theme
+}
+
+type Me_Settings_Display_Language {
+  language_id: String
+  name: String
+}
+
+type Me_Settings_Display_Theme {
+  name: String
+  theme_id: Int
+}
+
+type Mutation {
+  loginForAnemyApp(input: loginForAnemyAppInputType!): loginForAnemyAppType
+  saveAnimeInList(input: saveAnimeInListInputType!): saveAnimeInListType
+}
+
+type News {
+  author: News_Author
+  categories: [String]
+  creationDate: String
+  id: Int
+  images: News_Images
+  pin: Boolean
+  private: Boolean
+  text: String
+  title: String
+  url: String
+}
+
+type News_Author {
+  id: Int
+  images: News_Author_Images
+  url: String
+  username: String
+}
+
+type News_Author_Images {
+  avatar: String
+  banner: String
+}
+
+type News_Images {
+  banner: String
+  image: String
+}
+
+type Page {
+  Animes(filter: String, name: String, season: String): [Anime]
+  Characters(name: String): [Character]
+  News(pin: Boolean, title: String): [News]
+  Search(search: String): [Search]
+  Staffs(name: String): [Staff]
+}
+
+type Query {
+  AnemyChart: AnemyChart
+  Anime(id: Int, name: String): Anime
+  Character(id: Int, name: String): Character
+  Me: Me
+  News(id: Int): News
+  Page(perPage: Int): Page
+  Staff(id: Int, name: String): Staff
+}
+
+type Search {
+  animes: [Anime]
+  characters: [Character]
+  news: [News]
+  staffs: [Staff]
+}
+
+type Staff {
+  anime: [Anime]
+  biography: Staff_Biography
+  id: Int
+  image: String
+  like: Int
+  names: Staff_Names
+}
+
+type Staff_Biography {
+  english: String
+  french: String
+}
+
+type Staff_Names {
+  alternative: [String]
+  first: String
+  last: String
+  native: String
+}
+
+input loginForAnemyAppInputType {
+  email: String!
+  password: String!
+}
+
+type loginForAnemyAppType {
+  token: String
+}
+
+input saveAnimeInListInputType {
+  anime_id: Int!
+  notes: String
+  progression: Int!
+  score: Float
+  status: String!
+}
+
+type saveAnimeInListType {
+  id: Int
+}

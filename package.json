@@ -23,11 +23,10 @@
     "format": "bunx @biomejs/biome format --write ."
   },
   "dependencies": {
-    "jikan4.js": "^1.6.0",
-    "svelte-hero-icons": "^5.2.0",
-    "svelte-loading-spinners": "^0.3.6",
-    "tailwindcss": "^3.4.12",
-    "valibot": "^0.42.1"
+    "svelte-hero-icons": "5.2.0",
+    "svelte-loading-spinners": "0.3.6",
+    "tailwindcss": "3.4.12",
+    "valibot": "0.42.1"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.2",
@@ -41,7 +40,9 @@
     "svelte": "4.2.19",
     "svelte-check": "4.0.2",
     "typescript": "5.6.2",
-    "vite": "5.4.7"
+    "vite": "5.4.7",
+    "houdini": "1.2.62",
+    "houdini-svelte": "1.2.62"
   },
   "trustedDependencies": ["@biomejs/biome", "@sveltejs/kit", "esbuild"],
   "config": {

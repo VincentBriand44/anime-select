@@ -1,11 +1,8 @@
 <script lang="ts">
-import type Jikan from 'jikan4.js';
+// type Data = Extract<Jikan.Anime[keyof Jikan.Anime], string | number | null>;
 
-type Data = Extract<Jikan.Anime[keyof Jikan.Anime], string | number | null>;
-
-export let data: Data;
+export let data: any;
 export let title: string;
-export let error: string;
 export let synopsis = false;
 </script>
 
@@ -14,6 +11,6 @@ export let synopsis = false;
   {#if data}
     <span class="rounded-md text-xs font-bold leading-5" class:px-4={synopsis}>{data.toString()}</span>
   {:else}
-    <p class="text-xs text-secondary leading-5">{error}</p>
+    <p class="text-xs text-secondary leading-5">Inconnue</p>
   {/if}
 </div>
