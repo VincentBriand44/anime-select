@@ -8,15 +8,14 @@ interface Nav {
 
 const nav: Nav[] = [
   { name: 'Accueil', href: '/' },
-  { name: 'Saison actuelle', href: '/preview/now' },
-  { name: 'Saison prochaine', href: '/preview/upcoming' },
+  { name: 'Saisons', href: '/preview' },
 ];
 
 let open = false;
 let initialized = false;
 let delayedClose = false;
 
-function handleClick() {
+const handleClick = () => {
   if (!delayedClose) {
     delayedClose = true;
     open = !open;
@@ -26,7 +25,7 @@ function handleClick() {
       delayedClose = false;
     }, 1000);
   }
-}
+};
 </script>
 
 <div class="absolute left-8 top-8 h-10 w-10 flex justify-end items-end xl:bg-transparent bg-secondary rounded-br-full z-10 button" />
@@ -53,7 +52,7 @@ function handleClick() {
   >
     {#each nav as { name, href }}
       <li>
-        <a {href} class="text-primary font-bold hover:text-secondary transition-colors duration-300">{name}</a>
+        <a {href} on:click={handleClick} class="text-primary font-bold hover:text-secondary transition-colors duration-300">{name}</a>
       </li>
     {/each}
   </ul>
