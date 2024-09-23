@@ -1,0 +1,20 @@
+query GetNews {
+  Page
+  {
+    News {
+      author {
+        username
+      }
+      categories
+      creationDate
+      images {
+        banner
+        image
+      }
+      pin
+      text
+      title
+      url
+    }
+  }
+}
