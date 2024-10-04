@@ -1,6 +1,5 @@
 query GetNews {
-  Page
-  {
+  Page {
     News {
       author {
         username

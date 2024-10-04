@@ -1,38 +1,30 @@
 query getSeason($season: String) @blocking {
-  Page
-  {
-    Animes(season: $season)
-    {
+  Page {
+    Animes(season: $season) {
       MALId
       country
       episodes
       genres
       id
-      links
-      {
+      links {
         link
         name
       }
-      names
-      {
+      names {
         english
         romaji
       }
       source
-      startDate
-      {
+      startDate {
         fullDate
       }
-      studios
-      {
+      studios {
         name
       }
-      synopsis
-      {
+      synopsis {
         french
       }
-      trailer
-      {
+      trailer {
         youtube_embed_nc
       }
     }
